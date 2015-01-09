@@ -27,4 +27,34 @@
 		echo "存储路径: " . "upload/" . $_POST["userid"] . "-" . $_POST["imgnum"] . strrchr($_FILES["file"]["name"], '.');
 		
 	}
+
+	function upload_image($iid, $file_path, $mimetype) {
+		$root = $_SERVER['DOCUMENT_ROOT'];
+		require_once($root.'/upyun.class.php');
+		
+		$format = explode('/', $mimetype)[0];
+		
+		// if ($format != 'image') {
+		// 	err_ret('-10', 'not a image', '请上传图片');
+		// }
+		$type = explode('/', $mimetype)[1];
+
+		$time = time();
+		$img_name = md5($iid.$file_path.$time);
+		$img_name = $img_name.'.'.$type;
+
+		// 参数分别是：空间名、操作员、操作员密码
+		$upyun = new UpYun('wei-game', 'dobe', 'Daxiang@2014');
+		// 打开待上传文件的数据流
+		$fh = fopen($file_path, 'r');
+
+		// 将文件上传到 UPYUN 的 root 目录下，并命名为“img.jpg”；
+		// 第三个参数"True"表示自动创建目录
+		$upyun->writeFile($img_name, $fh, True);
+
+		// 关闭待上传文件的数据流
+		fclose($fh);
+		
+		return 'http://wei-game.b0.upaiyun.com/'.$img_name;
+	}
 ?>

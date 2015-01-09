@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
+    <title>你看到我的2014</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/db.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+<style type="text/css">
+html{
+  height: 100%;
+}
+body {
+  height: 100%;
+}
+
+
+  img[usemap] {
+    border: none;
+    height: auto;
+    max-width: 100%;
+    width: auto;
+  }
+</style>  
+  
+  <body>
+<div style="">
+
+<!--
+<img src="img/亮身份.jpg" alt="" usemap="#Map" />
+<map name="Map" id="Map">
+    <area alt="" title="" id="area1"
+    shape="poly" coords="56,444,49,384,240,384,218,566,80,564,49,511" />
+</map>
+-->
+
+
+<img src="img/亮身份.png" alt="" usemap="#Map" />
+<map name="Map" id="Map">
+    <area alt="" title="" id="area1" shape="poly" coords="43,361,42,250,244,246,259,450,145,461,67,423" />
+    <area alt="" title="" id="area2" shape="poly" coords="168,794,267,707,185,592,85,629,77,739,114,779" />
+    <area alt="" title="" id="area3" shape="poly" coords="394,584,484,476,593,591,560,645,509,673,422,645" />
+    <area alt="" title="" id="area4" shape="poly" coords="389,288,445,187,533,183,577,217,578,321,494,375,424,347" />
+</map>
+
+</div>
+
+<div id="footer">
+  <img src="img/bottom.png" class="img-responsive imgCenter">    
+</footer>
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+
+<script src="js/jquery.rwdImageMaps.min.js"></script>
+<script>
+$(document).ready(function(e) {
+  $('img[usemap]').rwdImageMaps();
+});
+</script>
+
+<script>
+$(document).ready(function(){
+
+  $("#area1").click(function(){
+    window.location.href="viewPic.php?openID=&whichPic=2";
+  });
+
+});
+</script>
+
+  </body>
+</html>

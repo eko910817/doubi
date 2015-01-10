@@ -14,19 +14,44 @@ $url = "viewPic.php?openID=" . $openID . "&" . "whichPic=" . ($whichPic+1);
 <head>
 	<meta http-equiv="Content-Type"  content="text/html;  charset=utf-8"  />
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=0">
-	
+	<link href="css/db.css" rel="stylesheet">
 	<script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
 	<script type="text/javascript" charset="utf-8" src="js/jquery.raty.js"></script>
 
 	<style>
+
+html {
+  background: url(img/bg.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body{
+	min-height: 100%;
+	padding: 0;
+	margin: 0;
+}
+
+
 /*图片预览区域CSS*/
-		#preview {
+		#preview2 {
 			width: 100%;
 			height:300px;
 			border:1px solid gray;
 			line-height: 300px;
 			text-align: center;
 		}
+
+#preview {
+	width: 100%;
+	background: url(img/viewPicBg.png);
+    /*background-size: 289px 344px;*/
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    text-align: center;
+}
 /*隐藏file input*/
 		#file {
 			display: none;
@@ -131,34 +156,53 @@ box-sizing:initial;
 	<div style="clear:both;"></div>
 </div>
 
-
+<!--
 <p style="text-align:center; margin:0;">2014<br/>最壕的一天</p>
+-->
 
-<div data-role="page" style="">
 
-	<div data-role="content">
+
+
+
+
+<div style="width:90%; margin-left:5%; margin-right:5%;">
+
+	<div>
 
 <!-- 图片预览区域 -->
 		<div id="preview">
-			<img src="<?php echo "upload/" . $whichPic . ".jpg"; ?>" class="imgFit" />
-		</div>  
+			<!--
+			<img id="mainImg" src="<?php echo "upload/" . $whichPic . ".jpg"; ?>" class="imgFit" />
+		-->
+		</div>
+		<img id="next1" src="img/next.png" style="float:right; width:65px; height:65px;" onClick="next();">
 
+	<div style="clear:both;"></div>
 	</div><!-- /content -->
 
 
 </div><!-- /page -->
 
 
-<div id="wrap" onClick="next();">下一张</div>
 
 
 
-		<div id="content" style="margin-top:20px;">
+
+
+
+
+		<div id="content" style="margin-top:-40px;">
+			<!--
 			<div id="click-demo" class="session">点击评分:</div>
+		-->
 			<div id="click"></div>
 		</div>	
 
 
+<div style="height:58px;"></div>
+<div id="footer">
+  <img src="img/bottom.png" class="img-responsive imgCenter">    
+</div>
 
 
 		<script type="text/javascript">
@@ -171,10 +215,10 @@ box-sizing:initial;
 			});
 
 			function shit(){
-			$('#click img').css("width", "15%");
+			$('#click img').css({"width":"15%"});
 			//alert($("#preview").offset.top);
 			//$("#wrap").css({"position":"relative", "top":"-20px", "right":""});
-			$("#wrap").css("top", ($("#preview").offset().top + 275) + "px");
+			//$("#wrap").css("top", ($("#preview").offset().top + 275) + "px");
 
 			//alert($("#preview").offset().top + $("#preview").height());
 		}
@@ -185,6 +229,10 @@ box-sizing:initial;
 <script type="text/javascript">
 
 $(document).ready(function(){
+
+	$('#preview').height($('#preview').width()*1.2);
+	$('#next1').css({"position":"relative", "top":"-60px"});
+
 	$("#dot" + "<?php echo $whichPic; ?>").css("background", "#000000");
 });
 

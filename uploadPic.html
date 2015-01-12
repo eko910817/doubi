@@ -11,6 +11,9 @@
 	<link href="css/db.css" rel="stylesheet">
 	<script src="http://code.jquery.com/jquery-1.5.min.js"></script>
 	<script src="http://code.jquery.com/mobile/1.0a4.1/jquery.mobile-1.0a4.1.min.js"></script>
+<!-- swiper reference -->
+	<link rel="stylesheet" href="css/idangerous.swiper.css">
+  	<script src="js/idangerous.swiper.js"></script>
 	<style>
 
 html {
@@ -88,57 +91,61 @@ form{
 </head>
 
 <body onload="shit();">
+<!-- swiper container 滑动页面容器 -->
+<div class="swiper-container">
+<!-- swiper wrapper 存放滑动内容 -->
+	<div class="swiper-wrapper">
+<!-- 滑动的页面设置成 swiper-slide -->
+		<div class="div100 swiper-slide" id="page1">
+			<div class="outer">
+				<div class="inner">
+	<!-- 图片递交表单 -->
+				<form action="upload_file.php" id="fileinfo" method="post" enctype="multipart/form-data">
+	<!-- 添加accept参数，只能选择图片文件 -->
+				<input type="file" name="file" id="file" accept="image/*"/> 
+				<br />
+	d<!-- 图片预览区域 -->
+				<div id="preview" onclick="$('input[type=file]').click()">+点击上传照片</div>  
+				</form>
 
-<div class="div100">
-	<div class="outer">
-		<div class="inner">
+				<p>请精选一张最能体现你2014年胭脂峰值的照片，让朋友们为你的眉毛颤抖！<br/><br/></p>
+				</div><!--inner-->
+			</div><!--outer-->
+
+			<div style="text-align:right;" class="temp">
+				<img src="img/pin.png" class="pin">
+			</div>
+
+			<img id="upBtn" src="img/next.png" class="imgCenter" style="width:40px; height:40px;"/>
+		</div><!-- div100 -->
+
+
+
+		<div class="div100 swiper-slide" id="page2">
+			<div class="outer">
+				<div class="inner">
 <!-- 图片递交表单 -->
-		<form action="upload_file.php" id="fileinfo" method="post" enctype="multipart/form-data">
+				<form action="upload_file.php" id="fileinfo" method="post" enctype="multipart/form-data">
 <!-- 添加accept参数，只能选择图片文件 -->
-		<input type="file" name="file" id="file" accept="image/*"/> 
-		<br />
+				<input type="file" name="file" id="file" accept="image/*"/> 
+				<br />
 <!-- 图片预览区域 -->
-		<div id="preview" onclick="$('input[type=file]').click()">+点击上传照片</div>  
-		</form>
+				<div id="preview" onclick="$('input[type=file]').click()">+点击上传照片</div>  
+				</form>
 
-		<p>请精选一张最能体现你2014年胭脂峰值的照片，让朋友们为你的眉毛颤抖！<br/><br/></p>
-		</div><!--inner-->
-	</div><!--outer-->
+				<p>请精选一张最能体现你2014年胭脂峰值的照片，让朋友们为你的眉毛颤抖！<br/><br/></p>
+				</div><!--inner-->
+			</div><!--outer-->
 
-	<div style="text-align:right;" class="temp">
-		<img src="img/pin.png" class="pin">
+			<div style="text-align:right;" class="temp">
+				<img src="img/pin.png" class="pin">
+			</div>
+
+			<img id="upBtn" src="img/next.png" class="imgCenter" style="width:40px; height:40px;"/>
+
+		</div><!-- div100 -->
 	</div>
-
-	<img id="upBtn" src="img/next.png" class="imgCenter" style="width:40px; height:40px;"/>
-
-</div><!-- div100 -->
-
-
-<div class="div100">
-	<div class="outer">
-		<div class="inner">
-<!-- 图片递交表单 -->
-		<form action="upload_file.php" id="fileinfo" method="post" enctype="multipart/form-data">
-<!-- 添加accept参数，只能选择图片文件 -->
-		<input type="file" name="file" id="file" accept="image/*"/> 
-		<br />
-<!-- 图片预览区域 -->
-		<div id="preview" onclick="$('input[type=file]').click()">+点击上传照片</div>  
-		</form>
-
-		<p>请精选一张最能体现你2014年胭脂峰值的照片，让朋友们为你的眉毛颤抖！<br/><br/></p>
-		</div><!--inner-->
-	</div><!--outer-->
-
-	<div style="text-align:right;" class="temp">
-		<img src="img/pin.png" class="pin">
-	</div>
-
-	<img id="upBtn" src="img/next.png" class="imgCenter" style="width:40px; height:40px;"/>
-
-</div><!-- div100 -->
-
-
+</div>
 
 
 
@@ -154,7 +161,7 @@ form{
 </html>
 
 <script type="text/javascript">  
-
+var mySwiper;
 $(document).ready(function(){
 
 	$('#preview').height($('#preview').width());
@@ -168,6 +175,14 @@ function shit(){
 
 	$('.pin').css({"position":"relative", "top": outer*(-1) + "px", "right": "30px"});
 	$('.temp').css({"height": "1px"});
+	//初始化Swiper
+	$(function(){
+		mySwiper = $('.swiper-container').swiper({
+//Swiper Option
+    mode:'vertical',
+    loop: false,
+    speed: 400
+  });
 
 }
 
@@ -204,7 +219,8 @@ function shit(){
 //上传成功后的回调函数
 		function uploadSuccess(data) {
 			alert("图片上传成功");
-			//alert(data);
+//上传成功后滑动到下一页
+			mySwiper.swipeNext(false);
 		}
 		function uploadFail(data) {
 			alert("图片上传失败");
